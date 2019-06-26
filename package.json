@@ -1,0 +1,35 @@
+{
+	"name": "vscode-libra-move",
+	"displayName": "Libra Move Language VSCode",
+	"description": "Libra Move language support for Visual Studio Code",
+	"version": "0.0.1",
+	"publisher": "SDKBox",
+	"engines": {
+		"vscode": "^1.28.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"contributes": {
+		"languages": [{
+			"id": "mvir",
+			"extensions": [ ".mvir" ],
+			"aliases": [ "Move" ]
+		}],
+		"snippets": [
+			{
+				"language": "mvir",
+				"path": "./snippets.json"
+			}
+		],
+		"grammars": [
+		  {
+			"language": "mvir",
+			"scopeName": "source.mvir",
+			"path": "./syntaxes/mvir.tmGrammar.json"
+		  }
+		]
+
+	},
+	"repository":"https://github.com/sdkbox/vscode-libra-move"
+}

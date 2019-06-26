@@ -1,0 +1,671 @@
+{
+	"scopeName": "source.mvir",
+	"comments": {
+		"lineComment": "//"
+	},
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"comment": "Interpreted string literals",
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.mvir"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.mvir"
+				}
+			},
+			"name": "string.quoted.double.mvir",
+			"patterns": [
+				{
+					"include": "#string_escaped_char"
+				},
+				{
+					"include": "#string_placeholder"
+				}
+			]
+		},
+		{
+			"comment": "Raw string literals",
+			"begin": "`",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.mvir"
+				}
+			},
+			"end": "`",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.mvir"
+				}
+			},
+			"name": "string.quoted.raw.mvir",
+			"patterns": [
+				{
+					"include": "#string_placeholder"
+				}
+			]
+		},
+		{
+			"comment": "Syntax error receiving channels",
+			"match": "<\\-([\\t ]+)chan\\b",
+			"captures": {
+				"1": {
+					"name": "invalid.illegal.receive-channel.mvir"
+				}
+			}
+		},
+		{
+			"comment": "Syntax error sending channels",
+			"match": "\\bchan([\\t ]+)<-",
+			"captures": {
+				"1": {
+					"name": "invalid.illegal.send-channel.mvir"
+				}
+			}
+		},
+		{
+			"comment": "Syntax error using slices",
+			"match": "\\[\\](\\s+)",
+			"captures": {
+				"1": {
+					"name": "invalid.illegal.slice.mvir"
+				}
+			}
+		},
+		{
+			"comment": "Syntax error numeric literals",
+			"match": "\\b0[0-7]*[89]\\d*\\b",
+			"name": "invalid.illegal.numeric.mvir"
+		},
+		{
+			"comment": "Built-in functions",
+			"match": "\\b(append|cap|close|complex|copy|delete|imag|len|make|new|panic|print|println|real|recover)\\b(?=\\()",
+			"name": "support.function.builtin.mvir"
+		},
+		{
+			"comment": "Function declarations",
+			"match": "^(\\bfunc\\b)(?:\\s+(\\([^\\)]+\\)\\s+)?(\\w+)(?=\\())?",
+			"captures": {
+				"1": {
+					"name": "keyword.function.mvir"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#brackets"
+						},
+						{
+							"include": "#operators"
+						}
+					]
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "\\d\\w*",
+							"name": "invalid.illegal.identifier.mvir"
+						},
+						{
+							"match": "\\w+",
+							"name": "entity.name.function.mvir"
+						}
+					]
+				}
+			}
+		},
+		{
+			"comment": "Functions",
+			"match": "(\\bfunc\\b)|(\\w+)(?=\\()",
+			"captures": {
+				"1": {
+					"name": "keyword.function.mvir"
+				},
+				"2": {
+					"patterns": [
+						{
+							"match": "\\d\\w*",
+							"name": "invalid.illegal.identifier.mvir"
+						},
+						{
+							"match": "\\w+",
+							"name": "support.function.mvir"
+						}
+					]
+				}
+			}
+		},
+		{
+			"comment": "Floating-point literals",
+			"match": "(\\.\\d+([Ee][-+]\\d+)?i?)\\b|\\b\\d+\\.\\d*(([Ee][-+]\\d+)?i?\\b)?",
+			"name": "constant.numeric.floating-point.mvir"
+		},
+		{
+			"comment": "Integers",
+			"match": "\\b((0x[0-9a-fA-F]+)|(0[0-7]+i?)|(\\d+([Ee]\\d+)?i?)|(\\d+[Ee][-+]\\d+i?))\\b",
+			"name": "constant.numeric.integer.mvir"
+		},
+		{
+			"comment": "Language constants",
+			"match": "\\b(true|false|nil|iota)\\b",
+			"name": "constant.language.mvir"
+		},
+		{
+			"begin": "\\b(package)\\s+",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.package.mvir"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"match": "\\d\\w*",
+					"name": "invalid.illegal.identifier.mvir"
+				},
+				{
+					"match": "\\w+",
+					"name": "entity.name.package.mvir"
+				}
+			]
+		},
+		{
+			"begin": "\\b(type)\\s+",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.type.mvir"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"match": "\\d\\w*",
+					"name": "invalid.illegal.identifier.mvir"
+				},
+				{
+					"match": "\\w+",
+					"name": "entity.name.type.mvir"
+				}
+			]
+		},
+		{
+			"begin": "\\b(import)\\s+",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.import.mvir"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"include": "#imports"
+				}
+			]
+		},
+		{
+			"begin": "\\b(var)\\s+",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.var.mvir"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"include": "#variables"
+				}
+			]
+		},
+		{
+			"match": "(?<!var)\\s*(\\w+(?:\\.\\w+)*(?>,\\s*\\w+(?:\\.\\w+)*)*)(?=\\s*=(?!=))",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"match": "\\d\\w*",
+							"name": "invalid.illegal.identifier.mvir"
+						},
+						{
+							"match": "\\w+(?:\\.\\w+)*",
+							"name": "variable.other.assignment.mvir",
+							"captures": {
+								"0": {
+									"patterns": [
+										{
+											"include": "#delimiters"
+										}
+									]
+								}
+							}
+						},
+						{
+							"include": "#delimiters"
+						}
+					]
+				}
+			}
+		},
+		{
+			"match": "\\w+(?:,\\s*\\w+)*(?=\\s*:=)",
+			"captures": {
+				"0": {
+					"patterns": [
+						{
+							"match": "\\d\\w*",
+							"name": "invalid.illegal.identifier.mvir"
+						},
+						{
+							"match": "\\w+",
+							"name": "variable.other.assignment.mvir"
+						},
+						{
+							"include": "#delimiters"
+						}
+					]
+				}
+			}
+		},
+		{
+			"comment": "Terminators",
+			"match": ";",
+			"name": "punctuation.terminator.mvir"
+		},
+		{
+			"include": "#brackets"
+		},
+		{
+			"include": "#delimiters"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#runes"
+		},
+		{
+			"include": "#storage_types"
+		}
+	],
+	"repository": {
+		"brackets": {
+			"patterns": [
+				{
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.begin.bracket.curly.mvir"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.end.bracket.curly.mvir"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					]
+				},
+				{
+					"begin": "\\(",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.begin.bracket.round.mvir"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.end.bracket.round.mvir"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					]
+				},
+				{
+					"match": "\\[|\\]",
+					"name": "punctuation.definition.bracket.square.mvir"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"begin": "/\\*",
+					"end": "\\*/",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.mvir"
+						}
+					},
+					"name": "comment.block.mvir"
+				},
+				{
+					"begin": "//",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.mvir"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.double-slash.mvir"
+				}
+			]
+		},
+		"delimiters": {
+			"patterns": [
+				{
+					"match": ",",
+					"name": "punctuation.other.comma.mvir"
+				},
+				{
+					"match": "\\.(?!\\.\\.)",
+					"name": "punctuation.other.period.mvir"
+				},
+				{
+					"match": ":(?!=)",
+					"name": "punctuation.other.colon.mvir"
+				}
+			]
+		},
+		"imports": {
+			"patterns": [
+				{
+					"match": "((?!\\s+\")[^\\s]*)?\\s*((\")([^\"]*)(\"))",
+					"captures": {
+						"1": {
+							"name": "entity.alias.import.mvir"
+						},
+						"2": {
+							"name": "string.quoted.double.mvir"
+						},
+						"3": {
+							"name": "punctuation.definition.string.begin.mvir"
+						},
+						"4": {
+							"name": "entity.name.import.mvir"
+						},
+						"5": {
+							"name": "punctuation.definition.string.end.mvir"
+						}
+					}
+				},
+				{
+					"begin": "\\(",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.imports.begin.bracket.round.mvir"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.imports.end.bracket.round.mvir"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#imports"
+						}
+					]
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"comment": "Flow control keywords",
+					"match": "\\b(let|break|case|continue|default|defer|else|fallthrough|for|go|goto|if|range|return|select|switch)\\b",
+					"name": "keyword.control.mvir"
+				},
+				{
+					"match": "\\b(LibraAccount|LibraCoin)\\b",
+					"name": "keyword.LibraAccount.mvir"
+				},
+				{
+					"match": "\\bconst\\b",
+					"name": "keyword.const.mvir"
+				},
+				{
+					"match": "\\b(func|main)\\b",
+					"name": "keyword.function.mvir"
+				},
+				{
+					"match": "\\binterface\\b",
+					"name": "keyword.interface.mvir"
+				},
+				{
+					"match": "\\bmap\\b",
+					"name": "keyword.map.mvir"
+				},
+				{
+					"match": "\\bstruct\\b",
+					"name": "keyword.struct.mvir"
+				}
+			]
+		},
+		"operators": {
+			"comment": "Note that the order here is very important!",
+			"patterns": [
+				{
+					"match": "(\\*|&)(?=\\w)",
+					"name": "keyword.operator.address.mvir"
+				},
+				{
+					"match": "<\\-",
+					"name": "keyword.operator.channel.mvir"
+				},
+				{
+					"match": "\\-\\-",
+					"name": "keyword.operator.decrement.mvir"
+				},
+				{
+					"match": "\\+\\+",
+					"name": "keyword.operator.increment.mvir"
+				},
+				{
+					"match": "(==|!=|<=|>=|<(?!<)|>(?!>))",
+					"name": "keyword.operator.comparison.mvir"
+				},
+				{
+					"match": "(&&|\\|\\||!)",
+					"name": "keyword.operator.logical.mvir"
+				},
+				{
+					"match": "(=|\\+=|\\-=|\\|=|\\^=|\\*=|/=|:=|%=|<<=|>>=|&\\^=|&=)",
+					"name": "keyword.operator.assignment.mvir"
+				},
+				{
+					"match": "(\\+|\\-|\\*|/|%)",
+					"name": "keyword.operator.arithmetic.mvir"
+				},
+				{
+					"match": "(&(?!\\^)|\\||\\^|&\\^|<<|>>)",
+					"name": "keyword.operator.arithmetic.bitwise.mvir"
+				},
+				{
+					"match": "\\.\\.\\.",
+					"name": "keyword.operator.ellipsis.mvir"
+				}
+			]
+		},
+		"runes": {
+			"patterns": [
+				{
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.mvir"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.mvir"
+						}
+					},
+					"name": "string.quoted.rune.mvir",
+					"patterns": [
+						{
+							"match": "\\G(\\\\([0-7]{3}|[abfnrtv\\\\'\"]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})|.)(?=')",
+							"name": "constant.other.rune.mvir"
+						},
+						{
+							"match": "[^']+",
+							"name": "invalid.illegal.unknown-rune.mvir"
+						}
+					]
+				}
+			]
+		},
+		"storage_types": {
+			"patterns": [
+				{
+					"match": "\\bbool\\b",
+					"name": "storage.type.boolean.mvir"
+				},
+				{
+					"match": "\\bbyte\\b",
+					"name": "storage.type.byte.mvir"
+				},
+				{
+					"match": "\\berror\\b",
+					"name": "storage.type.error.mvir"
+				},
+				{
+					"match": "\\b(complex(64|128)|float(32|64)|u?int(8|16|32|64)?)\\b",
+					"name": "storage.type.numeric.mvir"
+				},
+				{
+					"match": "\\brune\\b",
+					"name": "storage.type.rune.mvir"
+				},
+				{
+					"match": "\\bstring\\b",
+					"name": "storage.type.string.mvir"
+				},
+				{
+					"match": "\\buintptr\\b",
+					"name": "storage.type.uintptr.mvir"
+				}
+			]
+		},
+		"string_escaped_char": {
+			"patterns": [
+				{
+					"match": "\\\\([0-7]{3}|[abfnrtv\\\\'\"]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})",
+					"name": "constant.character.escape.mvir"
+				},
+				{
+					"match": "\\\\[^0-7xuUabfnrtv\\'\"]",
+					"name": "invalid.illegal.unknown-escape.mvir"
+				}
+			]
+		},
+		"string_placeholder": {
+			"patterns": [
+				{
+					"match": "%(\\[\\d+\\])?([\\+#\\-0\\x20]{,2}((\\d+|\\*)?(\\.?(\\d+|\\*|(\\[\\d+\\])\\*?)?(\\[\\d+\\])?)?))?[vT%tbcdoqxXUbeEfFgGsp]",
+					"name": "constant.other.placeholder.mvir"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"match": "(\\w+(?:,\\s*\\w+)*)(\\s+\\*?\\w+(?:\\.\\w+)?\\s*)?(?=\\s*=)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"match": "\\d\\w*",
+									"name": "invalid.illegal.identifier.mvir"
+								},
+								{
+									"match": "\\w+",
+									"name": "variable.other.assignment.mvir"
+								},
+								{
+									"include": "#delimiters"
+								}
+							]
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "$self"
+								}
+							]
+						}
+					}
+				},
+				{
+					"match": "(\\w+(?:,\\s*\\w+)*)(\\s+(\\[(\\d*|\\.\\.\\.)\\])*\\*?(<-)?\\w+(?:\\.\\w+)?\\s*[^=].*)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"match": "\\d\\w*",
+									"name": "invalid.illegal.identifier.mvir"
+								},
+								{
+									"match": "\\w+",
+									"name": "variable.other.declaration.mvir"
+								},
+								{
+									"include": "#delimiters"
+								}
+							]
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "$self"
+								}
+							]
+						}
+					}
+				},
+				{
+					"begin": "\\(",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.variables.begin.bracket.round.mvir"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.variables.end.bracket.round.mvir"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				}
+			]
+		}
+	}
+  }

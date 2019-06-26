@@ -1,0 +1,286 @@
+{
+    "Hash.keccak256": {
+        "scope": "mvir",
+        "prefix": "Hash.keccak256",
+        "body": "Hash.keccak256(${1:data})",
+        "description": "Hash.keccak256"
+    },   
+    "Hash.ripemd160": {
+        "scope": "mvir",
+        "prefix": "Hash.ripemd160",
+        "body": "Hash.ripemd160(${1:data})",
+        "description": "Hash.ripemd160"
+    },   
+    "Hash.sha2_256": {
+        "scope": "mvir",
+        "prefix": "Hash.sha2_256",
+        "body": "Hash.sha2_256(${1:data})",
+        "description": "Hash.sha2_256"
+    },   
+    "Hash.sha3_256": {
+        "scope": "mvir",
+        "prefix": "Hash.sha3_256",
+        "body": "Hash.sha3_256(${1:data})",
+        "description": "Hash.sha3_256"
+    },   
+
+    "LibraAccount.T": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.T",
+        "body": "LibraAccount.T",
+        "description": "LibraAccount.T"
+    },
+    "LibraAccount.make": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.make",
+        "body": "LibraAccount.make(${1:auth_key})",
+        "description": "Creates a new LibraLibraAccount.T"
+    },
+    "LibraAccount.deposit": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.deposit",
+        "body": "LibraAccount.deposit(${1:payee}, ${2:to_deposit})",
+        "description": "Deposits the `to_deposit` coin into the `payee`'s account"
+    },
+    "LibraAccount.mint_to_address": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.mint_to_address",
+        "body": "LibraAccount.mint_to_address(${1:payee}, ${2:amount})",
+        "description": [
+            "mint_to_address can only be called by accounts with MintCapability (see LibraCoin)",
+            "and those account will be charged for gas. If those account don't have enough gas to pay",
+            "for the transaction cost they will fail minting.",
+            "However those account can also mint to themselves so that is a decent workaround"
+        ]
+    },
+    "LibraAccount.withdraw_from_sender": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.withdraw_from_sender",
+        "body": "LibraAccount.withdraw_from_sender(${1:amount})",
+        "description": [
+            "Withdraw `amount` LibraCoin.T from the transaction sender's account"
+        ]
+    },
+    "LibraAccount.pay_from_sender": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.pay_from_sender",
+        "body": "LibraAccount.pay_from_sender(${1:payee}, ${2:amount})",
+        "description": [
+            "Withdraw `amount` LibraCoin.T from the transaction sender's account and send the coin",
+            "to the `payee` address",
+            "Creates the `payee` account if it does not exist"
+        ]
+    },
+    "LibraAccount.rotate_authentication_key": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.rotate_authentication_key",
+        "body": "LibraAccount.rotate_authentication_key(${1:new_authentication_key})",
+        "description": [
+            "Rotate the transaction sender's authentication key",
+            "The new key will be used for signing future transactions"
+        ]
+    },
+    "LibraAccount.create_new_account": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.create_new_account",
+        "body": "LibraAccount.create_new_account(${1:fresh_address},${2:initial_balance})",
+        "description": [
+            "Creates a new account at `fresh_address` with the `initial_balance` deducted from the",
+            "transaction sender's account"
+        ]
+    },
+    "LibraAccount.balance": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.balance",
+        "body": "LibraAccount.balance(${1:addr})",
+        "description": [
+            "Return the current balance of the LibraCoin.T in LibraLibraAccount.T at `addr`"
+        ]
+    },
+    "LibraAccount.sequence_number": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.sequence_number",
+        "body": "LibraAccount.sequence_number(${1:addr})",
+        "description": [
+            "Return the current sequence number at `addr`"
+        ]
+    },
+    "LibraAccount.exists": {
+        "scope": "mvir",
+        "prefix": "LibraAccount.exists",
+        "body": "LibraAccount.exists(${1:check_addr})",
+        "description": [
+            "Checks if an account exists at `check_addr`"
+        ]
+    },
+    
+    "LibraCoin.borrow_sender_mint_capability": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.borrow_sender_mint_capability",
+        "body": "LibraCoin.borrow_sender_mint_capability()",
+        "description": [
+            "Return a reference to the MintCapability published under the sender's account. Fails if the",
+            "sender does not have a MintCapability.",
+            "Since only the Association account has a mint capability, this will only succeed if it is",
+            "invoked by a transaction sent by that account."
+        ]
+    },
+    "LibraCoin.mint": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.mint",
+        "body": "LibraCoin.mint(${1:value}, ${2:capability})",
+        "description": [
+            "Mint a new LibraCoin.T worth `value`. The caller must have a reference to a MintCapability.",
+            "Only the Association account can acquire such a reference, and it can do so only via",
+            "`borrow_sender_mint_capability`"
+        ]
+    },
+    "LibraCoin.zero": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.zero",
+        "body": "LibraCoin.zero()",
+        "description": [
+            "Create a new LibraCoin.T with a value of 0"
+        ]
+    },
+    "LibraCoin.value": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.value",
+        "body": "LibraCoin.value(${1:coin_ref})",
+        "description": [
+            "Public accessor for the value of a coin"
+        ]
+    },
+    "LibraCoin.split": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.split",
+        "body": "LibraCoin.split(${1:coin}, ${2:amount})",
+        "description": [
+            "Splits the given coin into two and returns them both",
+            "It leverages `Self.withdraw` for any verifications of the values"
+        ]
+    },
+    "LibraCoin.withdraw": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.withdraw",
+        "body": "LibraCoin.withdraw(${1:coin_ref}, ${2:amount})",
+        "description": [
+            "`Divides` the given coin into two, where original coin is modified in place",
+            "The original coin will have value = original value - `amount`",
+            "The new coin will have a value = `amount`",
+            "Fails if the coins value is less than `amount`"
+        ]
+    },
+    "LibraCoin.join": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.join",
+        "body": "LibraCoin.join(${1:coin1}, ${2:coin2})",
+        "description": [
+            "Merges two coins and returns a new coin whose value is equal to the sum of the two inputs"
+        ]
+    },
+    "LibraCoin.deposit": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.deposit",
+        "body": "LibraCoin.deposit(${1:coin_ref}, ${2:check})",
+        "description": [
+            "`Merges` the two coins",
+            "The coin passed in by reference will have a value equal to the sum of the two coins",
+            "The `check` coin is consumed in the process"
+        ]
+    },
+    "LibraCoin.destroy_zero": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.destroy_zero",
+        "body": "LibraCoin.destroy_zero(${1:coin_ref})",
+        "description": [
+            "Destroy a coin",
+            "Fails if the value is non-zero",
+            "The amount of LibraCoin.T in the system is a tightly controlled property,",
+            "so you cannot `burn` any non-zero amount of LibraCoin.T"
+        ]
+    },
+    "LibraCoin.TODO_REMOVE_burn_gas_fee": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.TODO_REMOVE_burn_gas_fee",
+        "body": "LibraCoin.TODO_REMOVE_burn_gas_fee(${1:coin})",
+        "description": [
+            "Temporary procedure that is called to burn off the collected gas fee",
+            "In the future this will be replaced by the actual mechanism for collecting gas"
+        ]
+    },
+
+
+    "Signature.ed25519_verify": {
+        "scope": "mvir",
+        "prefix": "Signature.ed25519_verify",
+        "body": "Signature.ed25519_verify(${1:signature}, ${2:public_key}, ${3:message})",
+        "description": [
+            "Signature.ed25519_verify"
+        ]
+    },
+
+    "ValidatorSet.T": {
+        "scope": "mvir",
+        "prefix": "ValidatorSet.T",
+        "body": "ValidatorSet.T",
+        "description": "ValidatorSet.T"
+    },
+
+
+    "libra.scripts.create.account": {
+        "scope": "mvir",
+        "prefix": "libra.scripts.create.account",
+        "body": [
+            "import 0x0.LibraAccount;",
+            "main (fresh_address: address, initial_amount: u64) {",
+            "  LibraAccount.create_new_account(move(fresh_address), move(initial_amount));",
+            "  return;",
+            "}"
+        ]
+    },
+    "libra.scripts.mint": {
+        "scope": "mvir",
+        "prefix": "libra.scripts.mint",
+        "body": [
+            "import 0x0.LibraAccount;",
+            "import 0x0.LibraCoin;",
+            "main(payee: address, amount: u64) {",
+            "  LibraAccount.mint_to_address(move(payee), move(amount));",
+            "  return;",
+            "}"
+        ]
+    },
+    "libra.scripts.peer.to.peer.transfer": {
+        "scope": "mvir",
+        "prefix": "libra.scripts.peer.to.peer.transfer",
+        "body": [
+            "import 0x0.LibraAccount;",
+            "main (payee: address, amount: u64) {",
+            "  LibraAccount.pay_from_sender(move(payee), move(amount));",
+            "  return;",
+            "}"
+        ]
+    },
+    "libra.scripts.placeholder.script": {
+        "scope": "mvir",
+        "prefix": "libra.scripts.placeholder.script",
+        "body": [
+            "main() {",
+            "    return;",
+            "}"
+        ]
+    },
+    "libra.scripts.rotate.authentication.key": {
+        "scope": "mvir",
+        "prefix": "libra.scripts.rotate.authentication.key",
+        "body": [
+            "import 0x0.LibraAccount;",
+            "main (new_key: bytearray) {",
+            "  LibraAccount.rotate_authentication_key(move(new_key));",
+            "  return;",
+            "}"
+        ]
+    }
+
+}
