@@ -31,6 +31,13 @@
         "description": "Hash.sha3_256"
     },   
 
+
+    "LibraAccount": {
+        "scope": "mvir",
+        "prefix": "LibraAccount",
+        "body": "LibraAccount",
+        "description": "LibraAccount"
+    },
     "LibraAccount.T": {
         "scope": "mvir",
         "prefix": "LibraAccount.T",
@@ -121,6 +128,18 @@
         ]
     },
     
+    "LibraCoin": {
+        "scope": "mvir",
+        "prefix": "LibraCoin",
+        "body": "LibraCoin",
+        "description": "LibraCoin"
+    },
+    "LibraCoin.T": {
+        "scope": "mvir",
+        "prefix": "LibraCoin.T",
+        "body": "LibraCoin.T",
+        "description": "LibraCoin.T"
+    },
     "LibraCoin.borrow_sender_mint_capability": {
         "scope": "mvir",
         "prefix": "LibraCoin.borrow_sender_mint_capability",

@@ -2,7 +2,7 @@
 	"name": "vscode-libra-move",
 	"displayName": "Libra Move Language VSCode",
 	"description": "Libra Move language (syntax highlighting, snippets) for Visual Studio Code",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "SDKBox",
 	"engines": {
 		"vscode": "^1.20.0"
