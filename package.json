@@ -2,7 +2,7 @@
 	"name": "vscode-libra-move",
 	"displayName": "Libra Move Language VSCode",
 	"description": "Libra Move language support for Visual Studio Code",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "SDKBox",
 	"engines": {
 		"vscode": "^1.28.0"
