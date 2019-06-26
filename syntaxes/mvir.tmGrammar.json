@@ -209,10 +209,10 @@
 			]
 		},
 		{
-			"begin": "\\b(var)\\s+",
+			"begin": "\\b(let)\\s+",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.var.mvir"
+					"name": "keyword.let.mvir"
 				}
 			},
 			"end": "(?!\\G)",
@@ -223,7 +223,7 @@
 			]
 		},
 		{
-			"match": "(?<!var)\\s*(\\w+(?:\\.\\w+)*(?>,\\s*\\w+(?:\\.\\w+)*)*)(?=\\s*=(?!=))",
+			"match": "(?<!let)\\s*(\\w+(?:\\.\\w+)*(?>,\\s*\\w+(?:\\.\\w+)*)*)(?=\\s*=(?!=))",
 			"captures": {
 				"1": {
 					"patterns": [
@@ -467,10 +467,6 @@
 				{
 					"match": "(\\*|&)(?=\\w)",
 					"name": "keyword.operator.address.mvir"
-				},
-				{
-					"match": "<\\-",
-					"name": "keyword.operator.channel.mvir"
 				},
 				{
 					"match": "\\-\\-",

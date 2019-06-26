@@ -1,4 +1,11 @@
 {
+    "let": {
+        "scope": "mvir",
+        "prefix": "let",
+        "body": "let ${1:var}: ${2:type};",
+        "description": "let"
+    },
+
     "Hash.keccak256": {
         "scope": "mvir",
         "prefix": "Hash.keccak256",
