@@ -5,8 +5,10 @@
 [![GitHub issues](https://img.shields.io/github/issues/sdkbox/vscode-libra-move.svg)](https://github.com/sdkbox/vscode-libra-move/issues/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/sdkbox/vscode-libra-move.svg)](https://github.com/sdkbox/vscode-libra-move/pulls/)
 
-[Libra](https://libra.org): A simple global currency and financial infrastructure that empowers billions of people.
-[Move Language](https://developers.libra.org/docs/crates/move-language):Move is a new programming language developed to provide a safe and 
+https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move
+
+- [Libra](https://libra.org): A simple global currency and financial infrastructure that empowers billions of people.
+- [Move Language](https://developers.libra.org/docs/crates/move-language):Move is a new programming language developed to provide a safe and 
 programmable foundation for the Libra Blockchain.
 
 ## Features
