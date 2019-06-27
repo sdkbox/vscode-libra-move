@@ -551,7 +551,7 @@
 		"self": {
 			"comment": "Self variable",
 			"name": "variable.language.move",
-			"match": "\\bself\\b"
+			"match": "\\b(self|Self)\\b"
 		},
 		"mut": {
 			"comment": "Mutable storage modifier",

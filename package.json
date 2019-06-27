@@ -23,7 +23,8 @@
 		"languages": [{
 			"id": "mvir",
 			"extensions": [ ".mvir" ],
-			"aliases": [ "Move" ]
+			"aliases": [ "Move" ],
+			"configuration": "./language-configuration.json"
 		}],
 		"snippets": [
 			{
