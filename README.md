@@ -32,14 +32,15 @@ https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move
 ![snippets](./images/move-snippets.gif)
 
 ###### Move Commands:
-1. Move - Compile current file
+1. Move - Compile current file (only works on macOS)
 
+    The Compiler has been modified to support `--stdlib-root` argument. Detail with [PR](https://github.com/libra/libra/pull/237)
     ![snippets](./images/move-compile.gif)
 
 ## Contact
 
-- Email: fishwarter@gmail.com
 - Twitter: [@sdkbox][https://twitter.com/sdkbox]
+- Email: fishwarter@gmail.com
 
 ## License
 

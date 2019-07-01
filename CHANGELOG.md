@@ -31,10 +31,29 @@
 ## [0.0.7] - 2019/06/27
 ### Added
 - language configuration
-	- comments
-	- brackets
-	- autoClosingPairs
-	- surroundingPairs
+  - comments
+  - brackets
+  - autoClosingPairs
+  - surroundingPairs
 
 ### Modified
 - update syntax
+
+## [0.0.8] - 2019/07/01
+### Added
+- add snippets/compile gif
+
+- support compile `Move` program with [PR](https://github.com/libra/libra/pull/237) on macOS
+
+  ```
+  ./compiler --stdlib-root /path/to/stdlib hello.mvir
+  ```
+
+  ​
+
+- add `Move` stdlib (`extension`/bin/stdlib)
+
+### Modified
+- update readme
+- update logo
+
