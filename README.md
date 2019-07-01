@@ -29,13 +29,13 @@ https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move
 
 ###### Snippets:
 
-![snippets](./images/move-snippets.gif)
+![snippets](https://raw.githubusercontent.com/sdkbox/vscode-libra-move/master/images/move-snippets.gif)
 
 ###### Move Commands:
 1. Move - Compile current file (only works on macOS)
 
     The Compiler has been modified to support `--stdlib-root` argument. Detail with [PR](https://github.com/libra/libra/pull/237)
-    ![snippets](./images/move-compile.gif)
+    ![snippets](https://raw.githubusercontent.com/sdkbox/vscode-libra-move/master/images/move-compile.gif)
 
 ## Contact
 

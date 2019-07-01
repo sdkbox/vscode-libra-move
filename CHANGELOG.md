@@ -50,10 +50,13 @@
   ```
 
   ​
-
 - add `Move` stdlib (`extension`/bin/stdlib)
 
 ### Modified
 - update readme
 - update logo
 
+
+## [0.0.9] - 2019/07/01
+### Fixed
+- snippets/compile gif link
