@@ -22,7 +22,10 @@ function compileMove() {
   let compilerPath = path.join((<any>ext).extensionPath, 'bin', 'mac', 'compiler');
   let stdlibRoot = path.join((<any>ext).extensionPath, 'bin', 'stdlib');
   let cmd = `${compilerPath} --stdlib-root ${stdlibRoot} ${(<any>vscode.window).activeTextEditor.document.fileName}`;
-  getTerminal().sendText(cmd);
+  
+  let terminal = getTerminal()
+  terminal.show();
+  terminal.sendText(cmd);
     // console.log(__dirname);
 }
 

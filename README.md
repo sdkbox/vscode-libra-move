@@ -9,7 +9,7 @@ https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move
 
 - [Libra](https://libra.org): A simple global currency and financial infrastructure that empowers billions of people.
 - [Move Language](https://developers.libra.org/docs/crates/move-language):Move is a new programming language developed to provide a safe and 
-programmable foundation for the Libra Blockchain.
+  programmable foundation for the Libra Blockchain.
 
 ## Features
 - Code snippets
@@ -26,7 +26,19 @@ programmable foundation for the Libra Blockchain.
 - `ValidatorSet`
 - `libra.scripts` : [Transaction Scripts](https://github.com/libra/libra/tree/master/language/stdlib/transaction_scripts)
 
+###### Snippets:
+
+![snippets](./images/move-snippets.gif)
+
+###### Move Commands:
+1. Move - Compile current file
+
+  ![snippets](./images/move-compile.gif)
+
+
+
 ## License
+
 [MIT](./LICENSE)
 
 ## Test
