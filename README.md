@@ -8,13 +8,13 @@
 https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move
 
 - [Libra](https://libra.org): A simple global currency and financial infrastructure that empowers billions of people.
-- [Move Language](https://developers.libra.org/docs/crates/move-language):Move is a new programming language developed to provide a safe and 
+- [Move Language](https://developers.libra.org/docs/crates/move-language):Move is a new programming language developed to provide a safe and
   programmable foundation for the Libra Blockchain.
 - [SDKBOX](https://www.sdkbox.com/): SDKBOX IS THE BRIDGE BETWEEN APPS AND SERVICES. SDKBOX helps you manage everything about using third party SDKs in mobile applications: rapidly select, integrate, verify, and update live servies from top suppliers.
 
 ## Features
 - Code snippets
-- Syntax highlighting 
+- Syntax highlighting
 
 ## API
 
@@ -27,11 +27,27 @@ https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move
 - `ValidatorSet`
 - `libra.scripts` : [Transaction Scripts](https://github.com/libra/libra/tree/master/language/stdlib/transaction_scripts)
 
+###### Snippets:
+
+![snippets](./images/move-snippets.gif)
+
+###### Move Commands:
+1. Move - Compile current file
+
+    ![snippets](./images/move-compile.gif)
+
 ## Contact
 
-Email: fishwarter@gmail.com
-
-Twitter: [@sdkbox][https://twitter.com/sdkbox]
+- Email: fishwarter@gmail.com
+- Twitter: [@sdkbox][https://twitter.com/sdkbox]
 
 ## License
+
 [MIT](./LICENSE)
+
+## Test
+
+```
+npm install
+npm run compile
+```

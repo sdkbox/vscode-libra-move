@@ -19,13 +19,20 @@
 		"Snippets",
 		"Programming Languages"
 	],
+	"main": "./out/src/extension",
 	"contributes": {
-		"languages": [{
-			"id": "mvir",
-			"extensions": [ ".mvir" ],
-			"aliases": [ "Move" ],
-			"configuration": "./language-configuration.json"
-		}],
+		"languages": [
+			{
+				"id": "mvir",
+				"extensions": [
+					".mvir"
+				],
+				"aliases": [
+					"Move"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
 		"snippets": [
 			{
 				"language": "mvir",
@@ -33,14 +40,39 @@
 			}
 		],
 		"grammars": [
-		  {
-			"language": "mvir",
-			"scopeName": "source.mvir",
-			"path": "./syntaxes/mvir.tmGrammar.json"
-		  }
+			{
+				"language": "mvir",
+				"scopeName": "source.mvir",
+				"path": "./syntaxes/mvir.tmGrammar.json"
+			}
+		],
+		"commands": [
+			{
+				"command": "move.compile",
+				"title": "Move - Compile current file"
+			}
 		]
-
 	},
-	"repository":"https://github.com/sdkbox/vscode-libra-move",
-	"icon": "logo.png"
+	"repository": "https://github.com/sdkbox/vscode-libra-move",
+	"icon": "logo.png",
+	"activationEvents": [
+		"onCommand:move.compile"
+	],
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"dependencies": {
+		"encoding": "^0.1.12"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^7.0.43",
+		"mocha": "^6.1.4",
+		"typescript": "^2.5.2",
+		"vscode": "^1.1.5"
+	}
 }
