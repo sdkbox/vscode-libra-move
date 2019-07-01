@@ -28,3 +28,10 @@ programmable foundation for the Libra Blockchain.
 
 ## License
 [MIT](./LICENSE)
+
+## Test
+
+```
+npm install
+npm run compile
+```
