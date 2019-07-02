@@ -27,11 +27,11 @@ https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move
 - `ValidatorSet`
 - `libra.scripts` : [Transaction Scripts](https://github.com/libra/libra/tree/master/language/stdlib/transaction_scripts)
 
-###### Snippets:
+### - Snippets:
 
 ![snippets](https://raw.githubusercontent.com/sdkbox/vscode-libra-move/master/images/move-snippets.gif)
 
-###### Move Commands:
+### - Move Commands:
 1. Move - Compile current file (only works on macOS)
 
     The Compiler has been modified to support `--stdlib-root` argument. Detail with [PR](https://github.com/libra/libra/pull/237)
@@ -39,7 +39,7 @@ https://marketplace.visualstudio.com/items?itemName=SDKBox.vscode-libra-move
 
 ## Contact
 
-- Twitter: [@sdkbox][https://twitter.com/sdkbox]
+- Twitter: [@sdkbox](https://twitter.com/sdkbox)
 - Email: fishwarter@gmail.com
 
 ## License
