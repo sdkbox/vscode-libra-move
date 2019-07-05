@@ -1,4 +1,10 @@
 {
+    "move": {
+        "scope": "mvir",
+        "prefix": "move",
+        "body": "move($1)",
+        "description": "move"
+    },
     "let": {
         "scope": "mvir",
         "prefix": "let",
@@ -11,25 +17,25 @@
         "prefix": "Hash.keccak256",
         "body": "Hash.keccak256(${1:data})",
         "description": "Hash.keccak256"
-    },   
+    },
     "Hash.ripemd160": {
         "scope": "mvir",
         "prefix": "Hash.ripemd160",
         "body": "Hash.ripemd160(${1:data})",
         "description": "Hash.ripemd160"
-    },   
+    },
     "Hash.sha2_256": {
         "scope": "mvir",
         "prefix": "Hash.sha2_256",
         "body": "Hash.sha2_256(${1:data})",
         "description": "Hash.sha2_256"
-    },   
+    },
     "Hash.sha3_256": {
         "scope": "mvir",
         "prefix": "Hash.sha3_256",
         "body": "Hash.sha3_256(${1:data})",
         "description": "Hash.sha3_256"
-    },   
+    },
 
 
     "LibraAccount": {
@@ -59,7 +65,7 @@
     "LibraAccount.mint_to_address": {
         "scope": "mvir",
         "prefix": "LibraAccount.mint_to_address",
-        "body": "LibraAccount.mint_to_address(${1:payee}, ${2:amount})",
+        "body": "LibraAccount.mint_to_address(move(${1:payee}), move(${2:amount}))",
         "description": [
             "mint_to_address can only be called by accounts with MintCapability (see LibraCoin)",
             "and those account will be charged for gas. If those account don't have enough gas to pay",
@@ -78,7 +84,7 @@
     "LibraAccount.pay_from_sender": {
         "scope": "mvir",
         "prefix": "LibraAccount.pay_from_sender",
-        "body": "LibraAccount.pay_from_sender(${1:payee}, ${2:amount})",
+        "body": "LibraAccount.pay_from_sender(move(${1:payee}), move(${2:amount}))",
         "description": [
             "Withdraw `amount` LibraCoin.T from the transaction sender's account and send the coin",
             "to the `payee` address",
@@ -88,7 +94,7 @@
     "LibraAccount.rotate_authentication_key": {
         "scope": "mvir",
         "prefix": "LibraAccount.rotate_authentication_key",
-        "body": "LibraAccount.rotate_authentication_key(${1:new_authentication_key})",
+        "body": "LibraAccount.rotate_authentication_key(move(${1:new_authentication_key}))",
         "description": [
             "Rotate the transaction sender's authentication key",
             "The new key will be used for signing future transactions"
@@ -97,7 +103,7 @@
     "LibraAccount.create_new_account": {
         "scope": "mvir",
         "prefix": "LibraAccount.create_new_account",
-        "body": "LibraAccount.create_new_account(${1:fresh_address},${2:initial_balance})",
+        "body": "LibraAccount.create_new_account(move(${1:fresh_address}),move(${2:initial_balance}))",
         "description": [
             "Creates a new account at `fresh_address` with the `initial_balance` deducted from the",
             "transaction sender's account"
@@ -127,7 +133,7 @@
             "Checks if an account exists at `check_addr`"
         ]
     },
-    
+
     "LibraCoin": {
         "scope": "mvir",
         "prefix": "LibraCoin",

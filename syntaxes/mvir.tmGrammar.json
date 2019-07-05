@@ -131,7 +131,7 @@
 			"comment": "Integer literal (decimal)",
 			"name": "constant.numeric.integer.decimal.move",
 			"match": "\\b[0-9][0-9_]*([ui](8|16|32|64|128|s|size))?\\b"
-		},
+		},		
 		{
 			"comment": "Integer literal (hexadecimal)",
 			"name": "constant.numeric.integer.hexadecimal.move",
@@ -160,20 +160,17 @@
 		{
 			"comment": "Control keyword",
 			"name": "keyword.control.move",
-			"match": "\\b(break|continue|else|if|in|for|loop|match|return|while)\\b"
+			"match": "\\b(break|continue|else|if|in|for|loop|match|return|while|verify)\\b"
 		},
 		{
 			"comment": "Keyword",
 			"name": "keyword.other.move",
-			"match": "\\b(crate|extern|mod|let|ref|use|super|move)\\b"
+			"match": "\\b(crate|extern|mod|let|ref|use|super|move|copy|&mut|script|as|Transaction|R|V)\\b"
 		},
 		{
 			"comment": "Reserved keyword",
 			"name": "invalid.deprecated.move",
-			"match": "\\b(import|abstract|alignof|become|do|final|macro|offsetof|override|priv|proc|pure|sizeof|typeof|virtual|yield)\\b"
-		},
-		{
-			"include": "#unsafe"
+			"match": "\\b(module|import|abstract|alignof|become|final|offsetof|override|priv|proc|pure|sizeof|typeof|virtual|yield)\\b"
 		},
 		{
 			"include": "#sigils"
@@ -203,7 +200,10 @@
 			"include": "#const"
 		},
 		{
-			"include": "#pub"
+			"include": "#public"
+		},
+		{
+			"include": "#native"
 		},
 		{
 			"comment": "Miscellaneous operator",
@@ -254,7 +254,7 @@
 		{
 			"comment": "Built-in macro",
 			"name": "support.function.builtin.move",
-			"match": "\\b(macro_rules|compile_error|format_args|env|option_env|concat_idents|concat|line|column|file|stringify|include|include_str|include_bytes|module_path|cfg)!"
+			"match": "\\b(freeze|get_gas_remaining|move_to_sender|move_from|emit_event|get_txn_sequence_number|get_txn_sender|get_txn_public_key|get_txn_max_gas_units|get_txn_gas_unit_price|get_height|borrow_global|exists|release|create_account|move|copy|macro_rules|compile_error|format_args|env|option_env|concat_idents|concat|line|column|file|stringify|include|include_str|include_bytes|module_path|cfg)!"
 		},
 		{
 			"comment": "Core macro",
@@ -372,9 +372,6 @@
 					"include": "#where"
 				},
 				{
-					"include": "#unsafe"
-				},
-				{
 					"comment": "Function arguments",
 					"match": "\bfn\b",
 					"name": "keyword.other.fn.move"
@@ -383,7 +380,7 @@
 		},
 		{
 			"comment": "Type declaration",
-			"begin": "\\b(enum|struct|trait|union)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+			"begin": "\\b(enum|struct|trait|union|resource|modules)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
 			"end": "[\\{\\(;]",
 			"beginCaptures": {
 				"1": {
@@ -413,7 +410,10 @@
 					"include": "#core_types"
 				},
 				{
-					"include": "#pub"
+					"include": "#public"
+				},
+				{
+					"include": "#native"
 				},
 				{
 					"include": "#where"
@@ -578,15 +578,15 @@
 			"name": "storage.modifier.const.move",
 			"match": "\\bconst\\b"
 		},
-		"pub": {
+		"public": {
 			"comment": "Visibility modifier",
 			"name": "storage.modifier.visibility.move",
-			"match": "\\bpub\\b"
+			"match": "\\bpublic\\b"
 		},
-		"unsafe": {
-			"comment": "Unsafe code keyword",
-			"name": "keyword.other.unsafe.move",
-			"match": "\\bunsafe\\b"
+		"native": {
+			"comment": "Native modifier",
+			"name": "storage.modifier.visibility.move",
+			"match": "\\b(native|requires|ensures)\\b"
 		},
 		"where": {
 			"comment": "Generic where clause",
@@ -618,7 +618,7 @@
 		"core_types": {
 			"comment": "Built-in/core type",
 			"name": "storage.type.core.move",
-			"match": "\\b(address|bool|char|usize|isize|u8|u16|u32|u64|u128|i8|i16|i32|i64|i128|f32|f64|str|Self|Option|Result)\\b"
+			"match": "\\b(bytearray|address|bool|char|usize|isize|u8|u16|u32|u64|u128|i8|i16|i32|i64|i128|f32|f64|str|Self|Option|Result)\\b"
 		},
 		"core_vars": {
 			"comment": "Core type variant",
