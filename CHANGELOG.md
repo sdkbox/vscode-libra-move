@@ -1,6 +1,13 @@
 # Change Log
 
+## [0.0.10] - 2019/07/024
+
+### Fixed
+
+-   snippets
+
 ## [0.0.9] - 2019/07/01
+
 ### Fixed
 - snippets/compile gif link
 

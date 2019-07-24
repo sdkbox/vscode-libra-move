@@ -2,7 +2,7 @@
 	"name": "vscode-libra-move",
 	"displayName": "Libra Move Language VSCode",
 	"description": "Libra Move language (syntax highlighting, snippets) for Visual Studio Code",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"publisher": "SDKBox",
 	"engines": {
 		"vscode": "^1.20.0"
@@ -66,7 +66,8 @@
 		"test": "npm run compile && node ./node_modules/vscode/bin/test"
 	},
 	"dependencies": {
-		"encoding": "^0.1.12"
+		"encoding": "^0.1.12",
+		"lodash": ">=4.17.13"
 	},
 	"devDependencies": {
 		"@types/mocha": "^2.2.42",
